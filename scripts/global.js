@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-kanban-8c409-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = "https://join-kanban-app-14634-default-rtdb.europe-west1.firebasedatabase.app/user";
 let activeUserId;
 activeUserId = loadActiveUserId();
 let isUserMenuListenerAdded = false;

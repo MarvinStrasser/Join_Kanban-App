@@ -3,7 +3,7 @@ const isNameValid = val => /^[A-Z\-a-zÄÖÜäöüß]+\s[A-Z\-a-zÄÖÜäöüß\
 /** Validates email address format with length constraints */
 const isEmailValid = val => /^(?=[a-zA-Z0-9@._%+-]{6,64}$)(?=[a-zA-Z0-9._%+-]{1,64}@)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.(?!\.)[a-zA-Z]{2,3}(\.(?!\.)(?:uk|jp|in|au|at))?$/.test(val);
 /** Validates password strength (uppercase, lowercase, no number, special char, min 8 chars) */
-const isPassValid = val => /[A-Za-z0-9]/.test(val) /* && /[a-z]/.test(val) && /[0-9]/.test(val) */ && /[!§$%&\/\?\-\+#@]/.test(val) && val.length >= 8;
+const isPassValid = val => /[A-Za-z0-9]/.test(val) && /[!§$%&\/\?\-\+#@]/.test(val) && val.length >= 8;
 /** Validates password confirmation matches original password */
 const isConfirmValid = val => val === document.getElementById('passwordRegister').value;
 /** Validates checkbox is checked */
@@ -55,11 +55,9 @@ function checkAllValidations() {
  * @param {string} id - The ID of the icon element
  */
 function changePasswordIcon(id) {
-    let containerId = document.getElementById(`${id}`);
-    if (containerId.src.endsWith('visibility.png')) {
-        return;
-    }
-    containerId.src = '../assets/icons/visibility_off.png';
+    let containerId = document.getElementById(id);
+    if (containerId.src.endsWith('visibility.png')) return;
+    containerId.src = './assets/icons/visibility_off.png';
     containerId.alt = 'visibility_off icon';
 }
 
@@ -70,14 +68,14 @@ function changePasswordIcon(id) {
  * @param {Event} event - The triggering event
  */
 function passwordVisible(inputId, iconId, event) {
-    if (event) { event.preventDefault() }
-    let input = document.getElementById(`${inputId}`);
-    let icon = document.getElementById(`${iconId}`);
+    if (event) event.preventDefault();
+    let input = document.getElementById(inputId);
+    let icon = document.getElementById(iconId);
     let cursorPosition = input.selectionStart;
     checkIconPathAndSetNewIconAndInputType(icon, input);
     setTimeout(() => {
         input.focus();
-        input.setSelectionRange(cursorPosition, cursorPosition)
+        input.setSelectionRange(cursorPosition, cursorPosition);
     }, 0);
 }
 
@@ -87,15 +85,14 @@ function passwordVisible(inputId, iconId, event) {
  * @param {HTMLInputElement} input - The password input element
  */
 function checkIconPathAndSetNewIconAndInputType(icon, input) {
-    if (icon.src.endsWith('lock.png')) {
-        return
-    }
-    else if (icon.src.endsWith('visibility_off.png')) {
-        icon.src = '../assets/icons/visibility.png';
+    if (icon.src.endsWith('lock.png')) return;
+
+    if (icon.src.includes('visibility_off.png')) {
+        icon.src = './assets/icons/visibility.png';
         icon.alt = 'visibility icon';
         input.type = 'text';
     } else {
-        icon.src = '../assets/icons/visibility_off.png';
+        icon.src = './assets/icons/visibility_off.png';
         icon.alt = 'visibility_off icon';
         input.type = 'password';
     }
@@ -122,13 +119,14 @@ function setDataForBackendUpload() {
     let nameRegister = document.getElementById('nameRegister');
     let emailRegister = document.getElementById('emailRegister');
     let passwordRegister = document.getElementById('passwordRegister');
+
     let data = {
-        name: nameRegister.value.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        name: nameRegister.value.trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
         email: emailRegister.value.trim().toLowerCase(),
         password: passwordRegister.value,
         contacts: {
             "0": {
-                name: nameRegister.value.trim().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+                name: nameRegister.value.trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
                 email: emailRegister.value.trim().toLowerCase(),
             }
         },
@@ -157,19 +155,26 @@ function clearAllSignUpInputFields() {
 async function login(path = "") {
     let email = document.getElementById('emailLogin');
     let password = document.getElementById('passwordLogin');
+
     let response = await fetchData();
-    let activeUser = response.findIndex(user => 
-        user && user.email && user.password && 
-        user.email === email.value && user.password === password.value
+
+    let activeUser = response.findIndex(user =>
+        user && user.email && user.password &&
+        user.email === email.value &&
+        user.password === password.value
     );
+
     if (activeUser !== -1) {
         saveToLocalStorage(activeUser);
-        window.location.href = `../html/summary.html`;
+        window.location.href = './html/summary.html';
     } else {
-        document.getElementById('errMsgPassword').style.display = "block";
-        document.getElementById('errMsgPassword').innerText = "please double check email and password or not a Join user?";
+        let msg = document.getElementById('errMsgPassword');
+        msg.style.display = "block";
+        msg.innerText = "please double check email and password or not a Join user?";
     }
-    email.value = password.value = '';
+
+    email.value = '';
+    password.value = '';
 }
 
 /**
@@ -179,9 +184,8 @@ function guestLogin() {
     let email = document.getElementById('emailLogin');
     let password = document.getElementById('passwordLogin');
     email.value = password.value = '';
-    let activeUser = 0;
-    saveToLocalStorage(activeUser)
-    window.location.href = `../html/summary.html`;
+    saveToLocalStorage(0);
+    window.location.href = './html/summary.html';
 }
 
 /**
@@ -191,6 +195,7 @@ function animateLogoFirstVisit() {
     let logoOverlay = document.getElementById('logoOverlay');
     let logo = document.getElementById('logo');
     let animatedImgMobile = document.getElementById('animatedImgMobile');
+
     if (window.innerWidth <= 768) {
         logoOverlay.classList.add('animate-out-mobile');
         setTimeout(() => {
@@ -199,8 +204,9 @@ function animateLogoFirstVisit() {
     } else {
         logoOverlay.classList.add('animate-out');
     }
+
     setTimeout(() => {
-        logoOverlay.style.display ='none';
+        logoOverlay.style.display = 'none';
         logo.style.opacity = 1;
     }, 800);
 }

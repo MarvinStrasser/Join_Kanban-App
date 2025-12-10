@@ -5,46 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Help</title>
-    <link rel="shortcut icon" href="/assets/icons/Join_dark.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icons/Join_dark.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="/styles/standards.css">
-    <link rel="stylesheet" href="/styles/fonts.css">
-    <link rel="stylesheet" href="/styles/help.css">
-    <link rel="stylesheet" href="/styles/media_queries.css">
+    <link rel="stylesheet" href="../styles/standards.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/help.css">
+    <link rel="stylesheet" href="../styles/media_queries.css">
 
-    <script src="/scripts/global.js" defer></script>
+    <script src="../scripts/global.js" defer></script>
 </head>
 
 <body onload="checkLoggedInPageSecurity(); eachPageSetCurrentUserInitials(); initNavKeyboardSupport()">
     <nav role="navigation" aria-label="Main navigation">
         <div class="sidenav">
             <div class="nav_icon">
-                <img src="/assets/icons/Join_light.png" alt="Join Logo" aria-hidden="true">
+                <img src="../assets/icons/Join_light.png" alt="Join Logo" aria-hidden="true">
             </div>
             <section class="menu">
                 <div class="nav_navigation">
-                    <a class="nav_summary" href="/html/summary.html" aria-label="Go to Summary page">
-                        <img src="/assets/icons/Prop_summary.svg" height="30px" width="30px" alt="" aria-hidden="true">
+                    <a class="nav_summary" href="./summary.html" aria-label="Go to Summary page">
+                        <img src="../assets/icons/Prop_summary.svg" height="30" width="30" alt="" aria-hidden="true">
                         <p class="nav_p">Summary</p>
                     </a>
-                    <a class="nav_add_task" href="/html/add_task.html" aria-label="Go to Add Task page">
-                        <img src="/assets/icons/Prop_add_task.svg" height="30px" width="30px" alt="" aria-hidden="true">
+                    <a class="nav_add_task" href="./add_task.html" aria-label="Go to Add Task page">
+                        <img src="../assets/icons/Prop_add_task.svg" height="30" width="30" alt="" aria-hidden="true">
                         <p class="nav_p">Add Task</p>
                     </a>
-                    <a class="nav_board" href="/html/board.html" aria-label="Go to Board page">
-                        <img src="/assets/icons/Prop_board.svg" height="30px" width="30px" alt="" aria-hidden="true">
+                    <a class="nav_board" href="./board.html" aria-label="Go to Board page">
+                        <img src="../assets/icons/Prop_board.svg" height="30" width="30" alt="" aria-hidden="true">
                         <p class="nav_p">Board</p>
                     </a>
-                    <a class="nav_contacts" href="/html/contacts.html" aria-label="Go to Contacts page">
-                        <img src="/assets/icons/Prop_contacts.svg" height="30px" width="30px" alt="" aria-hidden="true">
+                    <a class="nav_contacts" href="./contacts.html" aria-label="Go to Contacts page">
+                        <img src="../assets/icons/Prop_contacts.svg" height="30" width="30" alt="" aria-hidden="true">
                         <p class="nav_p">Contacts</p>
                     </a>
                 </div>
 
                 <div class="nav_policy">
-                    <a class="privacy_policy" href="privacy_policy.html" aria-label="Read our privacy policy">Privacy
-                        Policy</a>
-                    <a class="legal_notes" href="legal_notice.html" aria-label="Read our legal notice">Legal notice</a>
+                    <a class="privacy_policy" href="./privacy_policy.html" aria-label="Read our privacy policy">Privacy Policy</a>
+                    <a class="legal_notes" href="./legal_notice.html" aria-label="Read our legal notice">Legal notice</a>
                 </div>
             </section>
         </div>
@@ -54,11 +53,11 @@
         <div class="header_content">
             <div class="header-left">
                 <h2 class="header_h2">Kanban Project Management Tool</h2>
-                <img class="header-left-img" src="/assets/icons/Join_dark.png" alt="Join Logo" aria-hidden="true">
+                <img class="header-left-img" src="../assets/icons/Join_dark.png" alt="Join Logo" aria-hidden="true">
             </div>
             <div class="header-right">
-                <a class="a_help_summary" href="/html/help.html" aria-label="Get help and support">
-                    <img class="help-icon" src="/assets/icons/help_icon.svg" alt="" aria-hidden="true">
+                <a class="a_help_summary" href="./help.html" aria-label="Get help and support">
+                    <img class="help-icon" src="../assets/icons/help_icon.svg" alt="" aria-hidden="true">
                 </a>
                 <div class="user-circle" onclick="toggleDropDownMenu()" onkeydown="handleUserMenuKeydown(event)"
                     id="currentUserInitials" tabindex="0" role="button" aria-expanded="false" aria-haspopup="menu"
@@ -66,13 +65,10 @@
                 </div>
 
                 <div class="user-menu" id="user-menu" role="menu" aria-hidden="true">
-                    <a class="user-menu-help" href="/html/help.html" role="menuitem">Help</a>
-                    <a class="user-menu-legal-notice" href="/html/legal_notice.html" role="menuitem">Legal Notice</a>
-                    <a class="user-menu-privacy-policy" href="/html/privacy_policy.html" role="menuitem">Privacy
-                        Policy</a>
-                    <a class="user-menu-logout" href="/index.html" id="logout-btn" onclick="logout()"
-                        role="menuitem">Log
-                        out</a>
+                    <a class="user-menu-help" href="./help.html" role="menuitem">Help</a>
+                    <a class="user-menu-legal-notice" href="./legal_notice.html" role="menuitem">Legal Notice</a>
+                    <a class="user-menu-privacy-policy" href="./privacy_policy.html" role="menuitem">Privacy Policy</a>
+                    <a class="user-menu-logout" href="../index.html" id="logout-btn" onclick="logout()" role="menuitem">Log out</a>
                 </div>
             </div>
         </div>
@@ -84,7 +80,7 @@
             <div class="left_arrow" onclick="history.back()" role="button" tabindex="0"
                 aria-label="Go back to previous page"
                 onkeydown="if(event.key==='Enter'||event.key===' '){history.back(); event.preventDefault();}">
-                <img src="/assets/icons/arrow-left-line.svg" alt="" aria-hidden="true">
+                <img src="../assets/icons/arrow-left-line.svg" alt="" aria-hidden="true">
             </div>
         </div>
 
@@ -93,33 +89,25 @@
                 <h2 id="intro-heading" class="sr-only">Introduction</h2>
                 <p class="intro p_help_txt">
                     Welcome to the help page for <span class="p_help_txt_blue">Join</span>, your guide to using our
-                    kanban
-                    project management tool. Here, we'll provide an overview of what <span
-                        class="p_help_txt_blue">Join</span> is, how it can
-                    benefit you, and how to use it.
+                    kanban project management tool. Here, we'll provide an overview of what <span
+                        class="p_help_txt_blue">Join</span> is, how it can benefit you, and how to use it.
                 </p>
             </section>
 
             <section aria-labelledby="what-is-join">
                 <h2 id="what-is-join" class="h2_help_page">What is Join?</h2>
                 <p class="p_help_txt">
-                    <span class="p_help_txt_blue">Join</span> is a kanban-based project management tool designed and
-                    built by a group of dedicated
+                    <span class="p_help_txt_blue">Join</span> is a kanban-based project management tool designed and built by a group of dedicated
                     students as part of their web development bootcamp curriculum at the Developer Akademie.
                 </p>
                 <p class="p_help_txt">
                     Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work, limit
                     work-in-progress, and maximize efficiency (or flow). <span class="p_help_txt_blue">Join</span>
-                    leverages the principles of
-                    kanban to help users manage their tasks and projects in an intuitive, visual interface.
+                    leverages the principles of kanban to help users manage tasks in an intuitive, visual interface.
                 </p>
                 <p class="p_help_txt">
-                    It is important to note that <span class="p_help_txt_blue">Join</span> is designed as an educational
-                    exercise and is not intended for extensive business usage. While we strive to ensure the best
-                    possible user
-                    experience, we cannot guarantee consistent availability, reliability, accuracy, or other aspects of
-                    quality
-                    regarding <span class="p_help_txt_blue">Join</span>.
+                    It is important to note that <span class="p_help_txt_blue">Join</span> is designed as an educational exercise and is not intended for
+                    business usage. We cannot guarantee availability or reliability of <span class="p_help_txt_blue">Join</span>.
                 </p>
             </section>
 
@@ -133,46 +121,35 @@
                     <li role="listitem">
                         <h3 class="h3_help_page">Exploring the Board</h3>
                         <p class="p_help_txt">
-                            When you log in to <span class="p_help_txt_blue">Join</span>, you'll find a default board.
-                            This
-                            board represents your project and contains four default lists: "To Do", "In Progress",
-                            "Await feedback" and "Done".
+                            The board contains four lists: "To Do", "In Progress", "Await feedback" and "Done".
                         </p>
                     </li>
 
                     <li role="listitem">
                         <h3 class="h3_help_page">Creating Contacts</h3>
                         <p class="p_help_txt">
-                            In <span class="p_help_txt_blue">Join</span>, you can add contacts to collaborate on your
-                            projects. Go to the "Contacts" section, click on "New contact", and fill in the required
-                            information. Once added, these contacts can be assigned tasks and they can collaborate with
-                            you on your projects.
+                            Add contacts via the Contacts section to collaborate on tasks.
                         </p>
                     </li>
 
                     <li role="listitem">
                         <h3 class="h3_help_page">Adding Cards</h3>
                         <p class="p_help_txt">
-                            Now that you've added your contacts, you can start adding cards. Cards represent individual
-                            tasks. Click the "+" button under the appropriate list to create a new card. Fill in the
-                            task details in the card, like task name, description, due date, assignees, etc.
+                            Click the "+" button in any list to create a new task card.
                         </p>
                     </li>
 
                     <li role="listitem">
                         <h3 class="h3_help_page">Moving Cards</h3>
                         <p class="p_help_txt">
-                            As the task moves from one stage to another, you can reflect that on the board by dragging
-                            and dropping the card from one list to another.
+                            Drag and drop cards between lists to update their progress.
                         </p>
                     </li>
 
                     <li role="listitem">
                         <h3 class="h3_help_page">Deleting Cards</h3>
                         <p class="p_help_txt">
-                            Once a task is completed, you can either move it to "Done" or delete it. Deleting a card
-                            will permanently remove it from the board. Please exercise caution when deleting cards, as
-                            this action is irreversible.
+                            Completed tasks can be deleted permanently if no longer needed.
                         </p>
                     </li>
                 </ol>
@@ -180,12 +157,10 @@
 
             <section aria-labelledby="conclusion">
                 <p class="closing" id="conclusion">
-                    Remember that using <span class="p_help_txt_blue">Join</span> effectively requires consistent
-                    updates from you and your team to ensure that the board reflects the current state of your project.
+                    Keep your board updated to ensure accurate project tracking in <span class="p_help_txt_blue">Join</span>.
                 </p>
                 <p class="closing">
-                    Have more questions about <span class="p_help_txt_blue">Join</span>? Feel free to contact us at
-                    [Your Contact Email]. We're here to help you!
+                    For further questions, contact us at [Your Contact Email].
                 </p>
                 <p class="closing">
                     Enjoy using <span class="p_help_txt_blue">Join</span>!
@@ -196,7 +171,7 @@
 
     <div id="rotateInfoOverlay">
         <div class="rotate-box">
-            <img src="/assets/icons/rotate_phone.png" alt="rotate-phone" class="rotate-phone">
+            <img src="../assets/icons/rotate_phone.png" alt="rotate-phone" class="rotate-phone">
             <p>Please rotate your Phone</p>
         </div>
     </div>
