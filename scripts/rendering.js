@@ -249,7 +249,7 @@ function renderContactsInOverlay(task) {
  */
 async function renderContacts() {
     let contactListRef = document.getElementById('contactList');
-    contactsFetch = await fetchData(`/${activeUserId}/contacts`);
+    contactsFetch = await fetchData(`/user/${activeUserId}/contacts`);
     let contactsArray = convertContactsFetchObjectToArray();
     if (contactsArray.length == 0) {
         contactListRef.innerHTML = emptyContactsHtml();

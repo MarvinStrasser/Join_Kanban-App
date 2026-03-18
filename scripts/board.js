@@ -44,7 +44,7 @@ async function renderTasks(tasks) {
  * @returns {Promise<Array>} Array of tasks with IDs and cleaned contact assignments
  */
 async function fetchAndAddIdAndRemoveUndefinedContacts() {
-    let tasksObj = await fetchData(`/${activeUserId}/tasks`);
+    let tasksObj = await fetchData(`/user/${activeUserId}/tasks`);
     let tasksWithId = Object.entries(tasksObj || {}).map(([key, contact]) => ({ id: key, ...contact }));
     if (tasksWithId && tasksWithId.length > 0) {
         await checkTaskAssignedAgainstNullOrInvalidContacts(tasksWithId);
@@ -65,7 +65,7 @@ async function checkTaskAssignedAgainstNullOrInvalidContacts(tasksWithId) {
             for (let j = 0; j < tasksWithId[i].assigned.length; j++) {
                 let contactIndex = contacts.indexOf(contacts.find(c => c.id === tasksWithId[i].assigned[j]));
                 if (contactIndex === -1) {
-                    await deletePath(`/${activeUserId}/tasks/${tasksWithId[i].id}/assigned/${j}`);
+                    await deletePath(`/user/${activeUserId}/tasks/${tasksWithId[i].id}/assigned/${j}`);
                 } else if (tasksWithId[i].assigned[j] !== null) {
                     tasksAssignedFiltered.push(tasksWithId[i].assigned[j])
                 }
@@ -150,7 +150,7 @@ async function renderTaskDetail(taskJson) {
  */
 async function deleteTaskfromBoard(taskId) {
     try {
-        await deletePath(`/${activeUserId}/tasks/${taskId}`);
+        await deletePath(`/user/${activeUserId}/tasks/${taskId}`);
         closeAddTaskOverlay();
         let tasksRefetch = await fetchAndAddIdAndRemoveUndefinedContacts();
         renderTasks(tasksRefetch);
@@ -241,7 +241,7 @@ async function toggleSubtask(taskId, subtaskIndex) {
     let newStatus = !currentStatus;
     task.subtasks[subtaskIndex].done = newStatus; 
     try {
-        await putData(`/${activeUserId}/tasks/${taskId}/subtasks/${subtaskIndex}/done`, newStatus);
+        await putData(`/user/${activeUserId}/tasks/${taskId}/subtasks/${subtaskIndex}/done`, newStatus);
         const taskJson = btoa(JSON.stringify(task));
         renderTaskDetail(taskJson);
         let tasksRefetch = await fetchAndAddIdAndRemoveUndefinedContacts();
@@ -263,7 +263,7 @@ async function toggleSubtaskWithScrollPreservation(taskId, subtaskIndex) {
     let newStatus = !currentStatus;
     task.subtasks[subtaskIndex].done = newStatus;
     try {
-        await putData(`/${activeUserId}/tasks/${taskId}/subtasks/${subtaskIndex}/done`, newStatus);
+        await putData(`/user/${activeUserId}/tasks/${taskId}/subtasks/${subtaskIndex}/done`, newStatus);
         updateSubtaskElementInDOM(taskId, subtaskIndex, newStatus);
         let tasksRefetch = await fetchAndAddIdAndRemoveUndefinedContacts();
         tasks = tasksRefetch; 

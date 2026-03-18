@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-kanban-app-14634-default-rtdb.europe-west1.firebasedatabase.app/user";
+const BASE_URL = "https://join-kanban-8c409-default-rtdb.europe-west1.firebasedatabase.app";
 let activeUserId;
 activeUserId = loadActiveUserId();
 let isUserMenuListenerAdded = false;
@@ -107,7 +107,7 @@ async function loadAndRenderContacts(divId, useAtPage) {
  */
 async function fetchAndSortContacts(containerId = "") {
     try {
-        const contactsObj = await fetchData(`/${activeUserId}/contacts`);
+        const contactsObj = await fetchData(`/user/${activeUserId}/contacts`);
         if (contactsObj.length == 0) { throw new Error; }
         const contactsArray = Object.entries(contactsObj || {}).map(([key, contact]) => ({ id: key, ...contact }));
         let contactsWithoutUndefined = contactsArray.filter(i => i.name !== undefined);
@@ -141,7 +141,7 @@ async function fetchData(path = "") {
  */
 async function eachPageSetCurrentUserInitials() {
     let currentUserInitials = document.getElementById('currentUserInitials');
-    let currentUser = await fetchData(`/${activeUserId}/name`);
+    let currentUser = await fetchData(`/user/${activeUserId}/name`);
     let initials = await getInitials(currentUser);
     currentUserInitials.innerHTML = initials;
     currentUserInitials.setAttribute('aria-label', `${initials} - User menu`);

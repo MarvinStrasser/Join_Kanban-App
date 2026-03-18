@@ -55,7 +55,7 @@ function toggleStyle(ev) {
  */
 async function moveTo(category) {
     try {
-        await putData('/' + activeUserId + '/tasks/' + currentDraggedId + '/board', category);
+        await putData('/user/' + activeUserId + '/tasks/' + currentDraggedId + '/board', category);
         let tasksRefetch = await fetchAndAddIdAndRemoveUndefinedContacts();
         renderTasks(tasksRefetch);
     } catch (error) {

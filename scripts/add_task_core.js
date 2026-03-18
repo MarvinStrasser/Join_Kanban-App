@@ -77,7 +77,7 @@ function createTaskObject(boardCategory) {
  * @returns {Promise<void>} Promise that resolves when task is saved
  */
 async function saveTaskToServer(task) {
-    const taskPath = `/${activeUserId}/tasks`;
+    const taskPath = `/user/${activeUserId}/tasks`;
     const nextTaskId = await calcNextId(taskPath);
     await putData(`${taskPath}/${nextTaskId}`, task);
 }
@@ -226,7 +226,7 @@ async function saveEditedTask(taskId) {
     const oldTask = tasks.find(t => t.id === taskId);
     if (!oldTask) return;
     try {
-        await putData(`/${activeUserId}/tasks/${taskId}`, getMergedTaskData(oldTask));
+        await putData(`/user/${activeUserId}/tasks/${taskId}`, getMergedTaskData(oldTask));
         await refreshBoardAfterEdit();
     } catch (error) {
         console.error("Save failed:", error);
