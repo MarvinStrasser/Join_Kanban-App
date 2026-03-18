@@ -151,9 +151,9 @@ async function updateContact(currContactId, option, event = null) {
         await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 10)));
         let contactData = await setContactDataForBackendUpload('contactEditDeleteModal');
         if (option === 'Edit') {
-            await putData('/' + activeUserId + '/contacts/' + currContactId, contactData);
+            await putData('/user/' + activeUserId + '/contacts/' + currContactId, contactData);
         } else {
-            await deletePath('/' + activeUserId + '/contacts/' + currContactId);
+            await deletePath('/user/' + activeUserId + '/contacts/' + currContactId);
         }
         clearAllContactsInputFields();
         await loadAndRenderContacts('contactList', 'contacts');
@@ -195,9 +195,9 @@ async function deleteContact(currContactId, option) {
  */
 async function createNextIdPutDataAndRender() {
     try {
-        let nextContactId = await calcNextId('/' + activeUserId + '/contacts');
+        let nextContactId = await calcNextId('/user/' + activeUserId + '/contacts');
         let contactData = await setContactDataForBackendUpload('contactAddModal');
-        let result = await putData('/' + activeUserId + '/contacts/' + nextContactId, contactData);
+        let result = await putData('/user/' + activeUserId + '/contacts/' + nextContactId, contactData);
         await loadAndRenderContacts('contactList', 'contacts');
     } catch (error) {
         console.error('Error creating contact:', error);

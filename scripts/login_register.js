@@ -156,7 +156,7 @@ async function login(path = "") {
     let email = document.getElementById('emailLogin');
     let password = document.getElementById('passwordLogin');
 
-    let response = await fetchData();
+    let response = await fetchData('/user');
 
     let activeUser = response.findIndex(user =>
         user && user.email && user.password &&

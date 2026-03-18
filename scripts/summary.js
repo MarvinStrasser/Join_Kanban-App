@@ -173,9 +173,9 @@ function renderGreeting(userName, currentDate) {
  */
 async function initSummary() {
   try {
-    let userData = await fetchData(`/${activeUserId}`);
+    let userData = await fetchData(`/user/${activeUserId}`);
     if (!userData) return;
-    let tasks = extractTasks(userData);
+    let tasks = extractTasks({ tasks: userData.tasks || {} });
     let taskCounts = countTasks(tasks);
     renderSummaryCounts(taskCounts);
     renderGreeting(userData.name || "Guest User", new Date());
